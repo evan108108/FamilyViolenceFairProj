@@ -1,0 +1,845 @@
+2012/03/25 13:37:13 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'fvfp.tbl_migration' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `tbl_migration`.
+2012/03/25 17:06:40 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8.
+2012/03/25 17:06:40 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_205744_addPollTables.php(46): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_205744_addPollTables->up()
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_205744_...')
+#3 [internal function]: MigrateCommand->actionUp(Array)
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#5 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#11 {main}
+---
+2012/03/25 17:08:25 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'poll' already exists. The SQL statement executed was: CREATE TABLE `poll` (
+        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+        `title` varchar(255) NOT NULL,
+        `description` longtext,
+        `status` tinyint(1) NOT NULL DEFAULT '1',
+        PRIMARY KEY (`id`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8.
+2012/03/25 17:08:25 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'poll' already exists. The SQL statement executed was: CREATE TABLE `poll` (
+        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+        `title` varchar(255) NOT NULL,
+        `description` longtext,
+        `status` tinyint(1) NOT NULL DEFAULT '1',
+        PRIMARY KEY (`id`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_205744_addPollTables.php(46): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_205744_addPollTables->up()
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_205744_...')
+#3 [internal function]: MigrateCommand->actionUp(Array)
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#5 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#11 {main}
+---
+2012/03/25 17:14:38 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8.
+2012/03/25 17:14:38 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_205744_addPollTables.php(46): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_205744_addPollTables->up()
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_205744_...')
+#3 [internal function]: MigrateCommand->actionUp(Array)
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#5 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#11 {main}
+---
+2012/03/25 17:19:52 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8.
+2012/03/25 17:19:52 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_205744_addPollTables.php(46): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_205744_addPollTables->up()
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_205744_...')
+#3 [internal function]: MigrateCommand->actionUp(Array)
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#5 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#11 {main}
+---
+2012/03/25 17:21:12 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8.
+2012/03/25 17:21:12 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_205744_addPollTables.php(46): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_205744_addPollTables->up()
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_205744_...')
+#3 [internal function]: MigrateCommand->actionUp(Array)
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#5 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#11 {main}
+---
+2012/03/25 17:22:42 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1072 Key column 'poll_user_id' doesn't exist in table. The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`poll_user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8.
+2012/03/25 17:22:42 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1072 Key column 'poll_user_id' doesn't exist in table. The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`poll_user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_205744_addPollTables.php(46): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_205744_addPollTables->up()
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_205744_...')
+#3 [internal function]: MigrateCommand->actionUp(Array)
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#5 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#11 {main}
+---
+2012/03/25 17:27:48 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8.
+2012/03/25 17:27:48 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_205744_addPollTables.php(46): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_205744_addPollTables->up()
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_205744_...')
+#3 [internal function]: MigrateCommand->actionUp(Array)
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#5 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#11 {main}
+---
+2012/03/25 17:28:57 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8.
+2012/03/25 17:28:57 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_205744_addPollTables.php(46): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_205744_addPollTables->up()
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_205744_...')
+#3 [internal function]: MigrateCommand->actionUp(Array)
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#5 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#11 {main}
+---
+2012/03/25 17:29:37 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8.
+2012/03/25 17:29:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_205744_addPollTables.php(46): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_205744_addPollTables->up()
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_205744_...')
+#3 [internal function]: MigrateCommand->actionUp(Array)
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#5 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#11 {main}
+---
+2012/03/25 17:30:05 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8.
+2012/03/25 17:30:05 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_205744_addPollTables.php(46): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_205744_addPollTables->up()
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_205744_...')
+#3 [internal function]: MigrateCommand->actionUp(Array)
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#5 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#11 {main}
+---
+2012/03/25 17:30:40 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8.
+2012/03/25 17:30:40 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_205744_addPollTables.php(46): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_205744_addPollTables->up()
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_205744_...')
+#3 [internal function]: MigrateCommand->actionUp(Array)
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#5 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#11 {main}
+---
+2012/03/25 17:31:22 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8.
+2012/03/25 17:31:22 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_205744_addPollTables.php(46): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_205744_addPollTables->up()
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_205744_...')
+#3 [internal function]: MigrateCommand->actionUp(Array)
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#5 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#11 {main}
+---
+2012/03/25 17:31:57 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'poll' already exists. The SQL statement executed was: CREATE TABLE `poll` (
+        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+        `title` varchar(255) NOT NULL,
+        `description` longtext,
+        `status` tinyint(1) NOT NULL DEFAULT '1',
+        PRIMARY KEY (`id`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8.
+2012/03/25 17:31:57 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'poll' already exists. The SQL statement executed was: CREATE TABLE `poll` (
+        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+        `title` varchar(255) NOT NULL,
+        `description` longtext,
+        `status` tinyint(1) NOT NULL DEFAULT '1',
+        PRIMARY KEY (`id`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_205744_addPollTables.php(46): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_205744_addPollTables->up()
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_205744_...')
+#3 [internal function]: MigrateCommand->actionUp(Array)
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#5 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#11 {main}
+---
+2012/03/25 17:32:31 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8.
+2012/03/25 17:32:31 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),
+        KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_205744_addPollTables.php(46): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_205744_addPollTables->up()
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_205744_...')
+#3 [internal function]: MigrateCommand->actionUp(Array)
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#5 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#11 {main}
+---
+2012/03/25 17:33:01 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'poll' already exists. The SQL statement executed was: CREATE TABLE `poll` (
+        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+        `title` varchar(255) NOT NULL,
+        `description` longtext,
+        `status` tinyint(1) NOT NULL DEFAULT '1',
+        PRIMARY KEY (`id`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8.
+2012/03/25 17:33:01 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'poll' already exists. The SQL statement executed was: CREATE TABLE `poll` (
+        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+        `title` varchar(255) NOT NULL,
+        `description` longtext,
+        `status` tinyint(1) NOT NULL DEFAULT '1',
+        PRIMARY KEY (`id`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_205744_addPollTables.php(45): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_205744_addPollTables->up()
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_205744_...')
+#3 [internal function]: MigrateCommand->actionUp(Array)
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#5 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#11 {main}
+---
+2012/03/25 17:33:32 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8.
+2012/03/25 17:33:32 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_205744_addPollTables.php(45): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_205744_addPollTables->up()
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_205744_...')
+#3 [internal function]: MigrateCommand->actionUp(Array)
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#5 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#11 {main}
+---
+2012/03/25 17:34:06 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8.
+2012/03/25 17:34:06 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_205744_addPollTables.php(45): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_205744_addPollTables->up()
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_205744_...')
+#3 [internal function]: MigrateCommand->actionUp(Array)
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#5 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#11 {main}
+---
+2012/03/25 17:34:43 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8.
+2012/03/25 17:34:43 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_205744_addPollTables.php(45): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_205744_addPollTables->up()
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_205744_...')
+#3 [internal function]: MigrateCommand->actionUp(Array)
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#5 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#11 {main}
+---
+2012/03/25 17:35:22 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8.
+2012/03/25 17:35:22 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.poll_vote' (errno: 150). The SQL statement executed was: CREATE TABLE `poll_vote` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `choice_id` int(11) unsigned NOT NULL,
+        `poll_id` int(11) unsigned NOT NULL,
+        `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+        `ip_address` varchar(16) NOT NULL DEFAULT '',
+        `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        KEY `vote_poll` (`poll_id`),
+        KEY `vote_choice` (`choice_id`),KEY `vote_user` (`user_id`),
+        CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_choice` FOREIGN KEY (`choice_id`) REFERENCES `poll_choice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `vote_poll` FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_205744_addPollTables.php(45): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_205744_addPollTables->up()
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_205744_...')
+#3 [internal function]: MigrateCommand->actionUp(Array)
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#5 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#11 {main}
+---
+2012/03/25 17:41:48 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.#sql-b6_4c' (errno: 150). The SQL statement executed was: ALTER TABLE `poll_vote` ADD CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE.
+2012/03/25 17:41:48 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.#sql-b6_4c' (errno: 150). The SQL statement executed was: ALTER TABLE `poll_vote` ADD CONSTRAINT `vote_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php(1362): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbMigration.php(344): CDbCommand->addForeignKey('vote_user', 'poll_vote', 'user_id', 'users', 'id', 'CASCADE', 'CASCADE')
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_213853_addFKForPollUsers.php(7): CDbMigration->addForeignKey('vote_user', 'poll_vote', 'user_id', 'users', 'id', 'CASCADE', 'CASCADE')
+#3 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_213853_addFKForPollUsers->up()
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_213853_...')
+#5 [internal function]: MigrateCommand->actionUp(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#11 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#12 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#13 {main}
+---
+2012/03/25 17:42:52 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.#sql-b6_4d' (errno: 150). The SQL statement executed was: ALTER TABLE `poll_vote` ADD CONSTRAINT `vote_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE.
+2012/03/25 17:42:52 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error: 1005 Can't create table 'fvfp.#sql-b6_4d' (errno: 150). The SQL statement executed was: ALTER TABLE `poll_vote` ADD CONSTRAINT `vote_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php(1362): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbMigration.php(344): CDbCommand->addForeignKey('vote_users', 'poll_vote', 'user_id', 'users', 'id', 'CASCADE', 'CASCADE')
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_213853_addFKForPollUsers.php(7): CDbMigration->addForeignKey('vote_users', 'poll_vote', 'user_id', 'users', 'id', 'CASCADE', 'CASCADE')
+#3 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_213853_addFKForPollUsers->up()
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_213853_...')
+#5 [internal function]: MigrateCommand->actionUp(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#11 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#12 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#13 {main}
+---
+2012/03/25 17:46:08 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'poll' already exists. The SQL statement executed was: CREATE TABLE `poll` (
+        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+        `title` varchar(255) NOT NULL,
+        `description` longtext,
+        `status` tinyint(1) NOT NULL DEFAULT '1',
+        PRIMARY KEY (`id`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8.
+2012/03/25 17:46:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'poll' already exists. The SQL statement executed was: CREATE TABLE `poll` (
+        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+        `title` varchar(255) NOT NULL,
+        `description` longtext,
+        `status` tinyint(1) NOT NULL DEFAULT '1',
+        PRIMARY KEY (`id`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8' in /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/db/CDbCommand.php:354
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/migrations/m120325_205744_addPollTables.php(45): CDbCommand->execute()
+#1 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(362): m120325_205744_addPollTables->up()
+#2 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/cli/commands/MigrateCommand.php(100): MigrateCommand->migrateUp('m120325_205744_...')
+#3 [internal function]: MigrateCommand->actionUp(Array)
+#4 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommand.php(141): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#5 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleCommandRunner.php(65): CConsoleCommand->run(Array)
+#6 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#7 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/base/CApplication.php(162): CConsoleApplication->processRequest()
+#8 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/yii-1.1.10.r3566/framework/yiic.php(33): CApplication->run()
+#9 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic.php(7): require_once('/Users/evan.fro...')
+#10 /Users/evan.frolich/Sites/yii/FamilyViolenceFairProj/webapp/protected/yiic(4): require_once('/Users/evan.fro...')
+#11 {main}
+---
