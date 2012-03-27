@@ -2,6 +2,7 @@
 
 class PollController extends Controller
 {
+  public $layout = 'application.views.layouts.column2';
   /**
    * @return array action filters
    */

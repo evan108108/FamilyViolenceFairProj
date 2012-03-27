@@ -58,27 +58,19 @@ class QuizController extends Controller
       if($vote->choice->right_answer > 0)
         $votesCorrect++;
     }
-    $score = ( $votesCorrect > 0 ) ? 100 * round($votesCorrect / $totalVotes, 3) : 0;
-    
-    $users = User::model()->findAllBySql("SELECT * FROM users WHERE username LIKE 'quiz_user_%'");
-    $countUsers = count($users);
-    $utScore = 0;
-    foreach($users as $user)
+    $score = ( $votesCorrect > 0 ) ? 100 * round($votesCorrect / $totalVotes, 2) : 0;
+
+    $allVotes = PollVote::model()->with('choice')->findAll();
+    $allTotalVotes = count($allVotes);
+    $allCorrectVotes = 0;
+    foreach($allVotes as $allVote)
     {
-      $uvotes = PollVote::model()->with('choice')->findAllByAttributes(array('user_id'=>$user->id));
-      $uvotesCorrect = 0;
-      foreach($uvotes as $uvote)
-      {
-        if($uvote->choice->right_answer > 0)
-          $uvotesCorrect++;
-      }
-      
-      $uscore = ( $uvotesCorrect > 0 ) ? 100 * round($uvotesCorrect / $totalVotes, 3) : 0;
-      $utScore += $uscore;
+      if($allVote->choice->right_answer > 0)
+        $allCorrectVotes++;
     }
-    
-    $avgScore = ($utScore > 0) ? round($utScore / $countUsers, 0) : 0;
-   
+
+    $avgScore = ($allCorrectVotes > 0) ? 100 * round($allCorrectVotes / $allTotalVotes, 2) : 0;
+
 
     $this->render('result', array('yourScore'=>$score, 'avgScore'=>$avgScore));
   }
@@ -110,7 +102,7 @@ class QuizController extends Controller
     {
       $response['choice'][$choice->id]['label'] = $choice->label;
       $response['choice'][$choice->id]['right_answer'] = $choice->right_answer;
-      $response['choice'][$choice->id]['precentage'] = $poll->totalVotes > 0 ? 100 * round($choice->votes / $poll->totalVotes, 3) : 0;
+      $response['choice'][$choice->id]['precentage'] = $poll->totalVotes > 0 ? 100 * round($choice->votes / $poll->totalVotes, 2) : 0;
       
       if($choice->right_answer > 0)
       {

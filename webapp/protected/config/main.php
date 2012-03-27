@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name'=>'Risk Factors & Correlates for IPV',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -22,14 +22,18 @@ return array(
     'application.modules.rights.components.*',
     'application.modules.poll.models.*',
     'application.modules.poll.components.*',
+    'ext.bootstrap.widgets.*'
 	),
 
 	'modules'=>array(
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
-			'password'=>'Enter Your Password Here',
+			'password'=>'Password1',
 		 	// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters'=>array('127.0.0.1','::1'),
+      'ipFilters'=>array('127.0.0.1','::1'),
+      'generatorPaths'=>array(
+        'bootstrap.gii', // since 0.9.1
+      ),
 		),
 		'user'=>array(
 			'tableUsers' => 'users',
@@ -59,8 +63,10 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 			'loginUrl'=>array('/user/login'),
-		),
-		
+    ),
+    'bootstrap'=>array(
+        'class'=>'ext.bootstrap.components.Bootstrap', // assuming you extracted bootstrap under extensions
+    ),
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(

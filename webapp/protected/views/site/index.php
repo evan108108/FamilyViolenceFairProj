@@ -1,16 +1,11 @@
+<?php $this->beginWidget('ext.bootstrap.widgets.BootHero', array(
+    'heading'=>'Welcome to the Family Violence Fair!',
+)); ?>
 <?php $this->pageTitle=Yii::app()->name; ?>
 
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
+<h2>The <i><?php echo CHtml::encode(Yii::app()->name); ?> Booth</i></h2>
 
-<p>Congratulations! You have successfully created your Yii application.</p>
+<p>Take this quiz to test your knowledge and earn a raffle ticket!</p>
 
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <tt><?php echo __FILE__; ?></tt></li>
-	<li>Layout file: <tt><?php echo $this->getLayoutFile('main'); ?></tt></li>
-</ul>
-
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+<p><a class="btn btn-primary btn-large" onClick="document.location='/quiz/startQuiz'">Start The Quiz</a></p>
+<?php $this->endWidget(); ?>

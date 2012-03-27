@@ -94,7 +94,7 @@ class Poll extends CActiveRecord
     return array(
       'id' => 'ID',
       'title' => 'Title',
-      'description' => 'Description',
+      'description' => 'Explanation',
       'status' => 'Status',
       'right_answer' => 'Correct',
     );
@@ -155,7 +155,7 @@ class Poll extends CActiveRecord
 
     // Add IP restricted attributes if needed
     if (Yii::app()->getModule('poll')->ipRestrict === TRUE && Yii::app()->user->isGuest) {
-      $where[] = 'ip_address=:ip_address AND user_id=NULL';
+      $where[] = 'ip_address=:ip_address';
       $params[':ip_address'] = $_SERVER['REMOTE_ADDR'];
     }
 
