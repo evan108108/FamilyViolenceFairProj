@@ -45,7 +45,7 @@ $form = $this->beginWidget('ext.bootstrap.widgets.BootActiveForm', array(
         'label'=>$poll->choices[$i]->label,
         'type'=>$this->bootStyles[$i], // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
         'size'=>'large', // '', 'large', 'small' or 'mini'
-        'htmlOptions'=>array('onclick'=>"doVote(" . $poll->id . ", " . $poll->choices[$i]->id . ")", 'data-toggle'=>"modal"),
+        'htmlOptions'=>array('onclick'=>"doVote(" . $poll->id . ", " . $poll->choices[$i]->id . ")", 'data-toggle'=>"modal", 'style'=>"margin-bottom:10px;"),
   )); ?>
 <?php endfor; ?>
 
