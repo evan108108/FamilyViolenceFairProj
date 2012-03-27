@@ -83,7 +83,7 @@ return array(
 		),
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=fvfp',
+			'connectionString' => 'mysql:host=127.0.0.1;dbname=fvfp',
 			'emulatePrepare' => true,
 			'username' => 'admin',
 			'password' => '',
