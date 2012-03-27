@@ -1,0 +1,44 @@
+#poll-form .form-radio,
+#portlet-poll-form .form-radio {
+  float: left;
+  width: 2em;
+}
+#poll-form .pollchoice-id,
+#portlet-poll-form .pollchoice-id {
+  display: none;
+  visibility: hidden;
+}
+
+
+.poll-results {
+  margin-bottom: .5em;
+  overflow: hidden;
+}
+.poll-results .label {
+  font-weight: bold;
+}
+.poll-results .bar {
+  background-color: #EFEFEF;
+  height: 1em;
+  margin: .5em 0;
+}
+.poll-results .bar .fill {
+  background-color: #298DCD;
+  height: 1em;
+}
+.poll-results .totals {
+  text-align: right;
+}
+
+
+.poll-item {
+  position: relative;
+}
+.poll-item .poll-id {
+  color: #dedede;
+  font-size: 24px;
+  font-weight: bold;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
