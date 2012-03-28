@@ -3,7 +3,17 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
-
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <script language="javascript">
+    window.addEventListener("load",function() {
+    // Set a timeout...
+      setTimeout(function(){
+        // Hide the address bar!
+        window.scrollTo(0, 1);
+      }, 0);
+    });
+  </script>
+  
 	<!-- blueprint CSS framework -->
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
@@ -41,7 +51,8 @@
         ),
         
     ),
-)); ?>
+  
+  )); ?>
 <div class="container" id="page">
   
 
